@@ -29,6 +29,8 @@
     <h1>Szellem Időzítő</h1>
     <div id="timer">05:00</div>
     <button onclick="startTimer()">Indítás</button>
+    <button onclick="stopTimer()">Leállítás</button>
+    <!-- Leállító gomb -->
     <div id="message"></div>
 
     <audio id="sound1">
@@ -68,7 +70,7 @@
       }
 
       function startTimer() {
-        clearInterval(timerInterval);
+        clearInterval(timerInterval); // Leállítja az előző időzítőt
         secondsElapsed = 0;
         document.getElementById("message").textContent = "";
         document.getElementById("timer").textContent = "05:00";
@@ -89,10 +91,15 @@
             document.getElementById("message").textContent = "Jöhet a Spirit.";
             playSound("sound3");
           } else if (secondsElapsed === 300) {
-            clearInterval(timerInterval);
+            clearInterval(timerInterval); // Leállítja az időzítőt, ha 5 perc eltelt
             document.getElementById("message").textContent = "Idő lejárt!";
           }
         }, 1000);
+      }
+
+      function stopTimer() {
+        clearInterval(timerInterval); // Az időzítő leállítása
+        document.getElementById("message").textContent = "Időzítő leállítva!";
       }
     </script>
   </body>
