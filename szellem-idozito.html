@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Szellem Időzítő</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      #timer {
+        font-size: 48px;
+        margin-bottom: 20px;
+      }
+      #message {
+        font-size: 24px;
+        color: darkred;
+        margin-top: 20px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Szellem Időzítő</h1>
+    <div id="timer">05:00</div>
+    <button onclick="startTimer()">Indítás</button>
+    <div id="message"></div>
+
+    <audio id="sound1">
+      <source
+        src="https://www.soundjay.com/button/beep-07.wav"
+        type="audio/wav"
+      />
+      Your browser does not support the audio element.
+    </audio>
+    <audio id="sound2">
+      <source
+        src="https://www.soundjay.com/button/beep-08b.wav"
+        type="audio/wav"
+      />
+      Your browser does not support the audio element.
+    </audio>
+    <audio id="sound3">
+      <source
+        src="https://www.soundjay.com/button/beep-09.wav"
+        type="audio/wav"
+      />
+      Your browser does not support the audio element.
+    </audio>
+
+    <script>
+      let secondsElapsed = 0;
+      let timerInterval;
+
+      function formatTime(seconds) {
+        let minutes = Math.floor(seconds / 60);
+        let secs = seconds % 60;
+        return `${minutes.toString().padStart(2, "0")}:${secs
+          .toString()
+          .padStart(2, "0")}`;
+      }
+
+      function playSound(id) {
+        const sound = document.getElementById(id);
+        sound.play();
+      }
+
+      function startTimer() {
+        clearInterval(timerInterval);
+        secondsElapsed = 0;
+        document.getElementById("message").textContent = "";
+        document.getElementById("timer").textContent = "05:00";
+
+        timerInterval = setInterval(() => {
+          secondsElapsed++;
+          document.getElementById("timer").textContent =
+            formatTime(secondsElapsed);
+
+          if (secondsElapsed === 60) {
+            document.getElementById("message").textContent = "Jöhet a Démon";
+            playSound("sound1");
+          } else if (secondsElapsed === 90) {
+            document.getElementById("message").textContent =
+              "Jöhet a Normál szellem";
+            playSound("sound2");
+          } else if (secondsElapsed === 180) {
+            document.getElementById("message").textContent = "Jöhet a Spirit.";
+            playSound("sound3");
+          } else if (secondsElapsed === 300) {
+            clearInterval(timerInterval);
+            document.getElementById("message").textContent = "Idő lejárt!";
+          }
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>
