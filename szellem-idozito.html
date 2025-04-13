@@ -3,12 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <title>Szellem füstölő időzítő</title>
-    <p>Azután indítsd el, hogy elnyomtad a füstölőt</p>
     <style>
       body {
         font-family: Arial, sans-serif;
         text-align: center;
         margin-top: 50px;
+        background-image: url("https://phasmodex.wordpress.com/wp-content/uploads/2025/04/bdff9e373c2a5ca9de09aef4072d4f2f4ea64270.jpg");
+        background-color: black;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
       }
       #timer {
         font-size: 48px;
@@ -19,6 +22,11 @@
         color: darkred;
         margin-top: 20px;
       }
+      #timer-bg {
+        background-color: gray;
+        opacity: 0.8;
+        border: 5px solid black;
+      }
       button {
         padding: 10px 20px;
         font-size: 18px;
@@ -27,81 +35,88 @@
     </style>
   </head>
   <body>
-    <h1>Szellem Időzítő</h1>
-    <div id="timer">05:00</div>
-    <button onclick="startTimer()">Indítás</button>
-    <button onclick="stopTimer()">Leállítás</button>
-    <!-- Leállító gomb -->
-    <div id="message"></div>
+    <div id="timer-bg">
+      <h1>Szellem Időzítő</h1>
+      <p>
+        Azután indítsd el, hogy elnyomtad a füstölőt! Hangjelzéssel jelzi, és
+        szövegesen kiírja, hogy mikor melyik szellem jöhet.
+      </p>
+      <div id="timer">05:00</div>
+      <button onclick="startTimer()">Indítás</button>
+      <button onclick="stopTimer()">Leállítás</button>
+      <!-- Leállító gomb -->
+      <div id="message"></div>
 
-    <audio id="sound1">
-      <source
-        src="https://phasmodex.wordpress.com/wp-content/uploads/2025/04/button-pressed-38129-2.mp3"
-        type="audio/wav"
-      />
-    </audio>
-    <audio id="sound2">
-      <source
-        src="https://phasmodex.wordpress.com/wp-content/uploads/2025/04/button-pressed-38129-2.mp3"
-        type="audio/wav"
-      />
-    </audio>
-    <audio id="sound3">
-      <source
-        src="https://phasmodex.wordpress.com/wp-content/uploads/2025/04/button-pressed-38129-2.mp3"
-        type="audio/wav"
-      />
-    </audio>
+      <audio id="sound1">
+        <source
+          src="https://phasmodex.wordpress.com/wp-content/uploads/2025/04/button-pressed-38129-2.mp3"
+          type="audio/wav"
+        />
+      </audio>
+      <audio id="sound2">
+        <source
+          src="https://phasmodex.wordpress.com/wp-content/uploads/2025/04/button-pressed-38129-2.mp3"
+          type="audio/wav"
+        />
+      </audio>
+      <audio id="sound3">
+        <source
+          src="https://phasmodex.wordpress.com/wp-content/uploads/2025/04/button-pressed-38129-2.mp3"
+          type="audio/wav"
+        />
+      </audio>
 
-    <script>
-      let secondsElapsed = 0;
-      let timerInterval;
+      <script>
+        let secondsElapsed = 0;
+        let timerInterval;
 
-      function formatTime(seconds) {
-        let minutes = Math.floor(seconds / 60);
-        let secs = seconds % 60;
-        return `${minutes.toString().padStart(2, "0")}:${secs
-          .toString()
-          .padStart(2, "0")}`;
-      }
+        function formatTime(seconds) {
+          let minutes = Math.floor(seconds / 60);
+          let secs = seconds % 60;
+          return `${minutes.toString().padStart(2, "0")}:${secs
+            .toString()
+            .padStart(2, "0")}`;
+        }
 
-      function playSound(id) {
-        const sound = document.getElementById(id);
-        sound.play();
-      }
+        function playSound(id) {
+          const sound = document.getElementById(id);
+          sound.play();
+        }
 
-      function startTimer() {
-        clearInterval(timerInterval); // Leállítja az előző időzítőt
-        secondsElapsed = 0;
-        document.getElementById("message").textContent = "";
-        document.getElementById("timer").textContent = "05:00";
+        function startTimer() {
+          clearInterval(timerInterval); // Leállítja az előző időzítőt
+          secondsElapsed = 0;
+          document.getElementById("message").textContent = "";
+          document.getElementById("timer").textContent = "05:00";
 
-        timerInterval = setInterval(() => {
-          secondsElapsed++;
-          document.getElementById("timer").textContent =
-            formatTime(secondsElapsed);
+          timerInterval = setInterval(() => {
+            secondsElapsed++;
+            document.getElementById("timer").textContent =
+              formatTime(secondsElapsed);
 
-          if (secondsElapsed === 60) {
-            document.getElementById("message").textContent = "Jöhet a Démon";
-            playSound("sound1");
-          } else if (secondsElapsed === 90) {
-            document.getElementById("message").textContent =
-              "Jöhet a Normál szellem";
-            playSound("sound2");
-          } else if (secondsElapsed === 180) {
-            document.getElementById("message").textContent = "Jöhet a Spirit.";
-            playSound("sound3");
-          } else if (secondsElapsed === 300) {
-            clearInterval(timerInterval); // Leállítja az időzítőt, ha 5 perc eltelt
-            document.getElementById("message").textContent = "Idő lejárt!";
-          }
-        }, 1000);
-      }
+            if (secondsElapsed === 60) {
+              document.getElementById("message").textContent = "Jöhet a Démon";
+              playSound("sound1");
+            } else if (secondsElapsed === 90) {
+              document.getElementById("message").textContent =
+                "Jöhet a Normál szellem";
+              playSound("sound2");
+            } else if (secondsElapsed === 180) {
+              document.getElementById("message").textContent =
+                "Jöhet a Spirit.";
+              playSound("sound3");
+            } else if (secondsElapsed === 300) {
+              clearInterval(timerInterval); // Leállítja az időzítőt, ha 5 perc eltelt
+              document.getElementById("message").textContent = "Idő lejárt!";
+            }
+          }, 1000);
+        }
 
-      function stopTimer() {
-        clearInterval(timerInterval); // Az időzítő leállítása
-        document.getElementById("message").textContent = "Időzítő leállítva!";
-      }
-    </script>
+        function stopTimer() {
+          clearInterval(timerInterval); // Az időzítő leállítása
+          document.getElementById("message").textContent = "Időzítő leállítva!";
+        }
+      </script>
+    </div>
   </body>
 </html>
