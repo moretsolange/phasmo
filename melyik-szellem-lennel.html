@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Melyik szellem lennél? | Phasmodex</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #0a0a0a;
+        color: #e0e0e0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        padding: 1rem;
+        margin: 0;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: auto;
+        padding: 1rem;
+      }
+
+      h1 {
+        text-align: center;
+        color: #84f0ff;
+        text-shadow: 0 0 10px #84f0ff;
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+      }
+
+      .question {
+        margin-bottom: 2rem;
+      }
+
+      .question p {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        cursor: pointer;
+      }
+
+      input[type="radio"] {
+        margin-right: 0.5rem;
+      }
+
+      button {
+        background-color: #84f0ff;
+        color: #000;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        display: block;
+        margin: 2rem auto;
+        border-radius: 8px;
+        width: 100%;
+        max-width: 300px;
+      }
+
+      #result {
+        margin-top: 2rem;
+        font-size: 1.2rem;
+        background: #111;
+        padding: 1rem;
+        border-left: 5px solid #84f0ff;
+      }
+
+      @media screen and (max-width: 600px) {
+        h1 {
+          font-size: 1.4rem;
+        }
+
+        button {
+          font-size: 1rem;
+          padding: 0.75rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Melyik Phasmophobia szellem lennél?</h1>
+      <form id="quizForm">
+        <div class="question">
+          <p>1. Hogyan viselkedsz, ha valaki feldühít?</p>
+          <label><input type="radio" name="q1" value="a" /> Elbújok</label>
+          <label
+            ><input type="radio" name="q1" value="b" /> Csendben figyelek, aztán
+            lecsapok</label
+          >
+          <label
+            ><input type="radio" name="q1" value="c" /> Megijesztem őket
+            előbb</label
+          >
+          <label
+            ><input type="radio" name="q1" value="d" /> Zavart keltek, ledobom a
+            cuccaikat</label
+          >
+        </div>
+
+        <div class="question">
+          <p>2. Mi a kedvenc környezeted?</p>
+          <label
+            ><input type="radio" name="q2" value="a" /> Sötét, zárt
+            szobák</label
+          >
+          <label
+            ><input type="radio" name="q2" value="b" /> Bárhol meglephetem az
+            embereket</label
+          >
+          <label
+            ><input type="radio" name="q2" value="c" /> Ahol a legtöbben
+            vannak</label
+          >
+          <label
+            ><input type="radio" name="q2" value="d" /> Ahol sok a tárgy</label
+          >
+        </div>
+
+        <div class="question">
+          <p>3. Hogyan vadászol?</p>
+          <label
+            ><input type="radio" name="q3" value="a" /> Csendben meglepem az
+            áldozatot</label
+          >
+          <label
+            ><input type="radio" name="q3" value="b" /> Egyetlen célpontra
+            koncentrálok</label
+          >
+          <label
+            ><input type="radio" name="q3" value="c" /> Mentálisan zavarom
+            őket</label
+          >
+          <label
+            ><input type="radio" name="q3" value="d" /> Káoszt okozok, aztán
+            támadok</label
+          >
+        </div>
+
+        <div class="question">
+          <p>4. Milyen jelet hagynál a jelenlétedről?</p>
+          <label><input type="radio" name="q4" value="a" /> Semmit</label>
+          <label
+            ><input type="radio" name="q4" value="b" /> Egy szót suttognék újra
+            és újra</label
+          >
+          <label
+            ><input type="radio" name="q4" value="c" /> Mindig
+            megjelennék</label
+          >
+          <label
+            ><input type="radio" name="q4" value="d" /> Tárgyakat mozdítanék
+            el</label
+          >
+        </div>
+
+        <div class="question">
+          <p>5. Mit szeretnél, hogy az emberek érezzenek a közeledben?</p>
+          <label
+            ><input type="radio" name="q5" value="a" /> Magányt és
+            nyugalmat</label
+          >
+          <label><input type="radio" name="q5" value="b" /> Félelmet</label>
+          <label
+            ><input type="radio" name="q5" value="c" /> Kontrollvesztést</label
+          >
+          <label
+            ><input type="radio" name="q5" value="d" /> Zavarodottságot</label
+          >
+        </div>
+
+        <div class="question">
+          <p>6. Milyen kísértetházban élnél?</p>
+          <label
+            ><input type="radio" name="q6" value="a" /> Elhagyatott
+            kastély</label
+          >
+          <label><input type="radio" name="q6" value="b" /> Modern lakás</label>
+          <label
+            ><input type="radio" name="q6" value="c" /> Kísértetjárta
+            iskola</label
+          >
+          <label
+            ><input type="radio" name="q6" value="d" /> Régi, kincsekkel teli
+            ház</label
+          >
+        </div>
+
+        <div class="question">
+          <p>7. Milyen vagy egy társaságban?</p>
+          <label
+            ><input type="radio" name="q7" value="a" /> Inkább megfigyelek,
+            csendben</label
+          >
+          <label
+            ><input type="radio" name="q7" value="b" /> Egyvalakivel
+            foglalkozom</label
+          >
+          <label
+            ><input type="radio" name="q7" value="c" /> A figyelem
+            középpontjában állok</label
+          >
+          <label
+            ><input type="radio" name="q7" value="d" /> Kavarom a dolgokat
+            háttérből</label
+          >
+        </div>
+
+        <div class="question">
+          <p>8. Mi idegesít fel legjobban?</p>
+          <label
+            ><input type="radio" name="q8" value="a" /> Ha túlságosan rám
+            figyelnek</label
+          >
+          <label
+            ><input type="radio" name="q8" value="b" /> Ha az, akire figyelek,
+            nem vesz komolyan</label
+          >
+          <label
+            ><input type="radio" name="q8" value="c" /> Ha figyelmen kívül
+            hagynak</label
+          >
+          <label
+            ><input type="radio" name="q8" value="d" /> Ha minden túl
+            nyugodt</label
+          >
+        </div>
+
+        <button type="button" onclick="calculateResult()">
+          Eredmény megtekintése
+        </button>
+      </form>
+
+      <div id="result"></div>
+    </div>
+
+    <script>
+      function calculateResult() {
+        const form = document.getElementById("quizForm");
+        const answers = new FormData(form);
+        const counts = { a: 0, b: 0, c: 0, d: 0 };
+
+        for (let [key, value] of answers.entries()) {
+          counts[value]++;
+        }
+
+        const max = Math.max(...Object.values(counts));
+        const resultKey = Object.keys(counts).find(
+          (key) => counts[key] === max
+        );
+
+        const results = {
+          a: `<strong>Árny</strong>: Szégyenlős vagy, és ha lehet, kerülöd mások társaságát.`,
+          b: `<strong>Banshee</strong>: Egyetlen célpontra fókuszálsz – a te célod mindig egyértelmű, és eléred, amit szeretnél.`,
+          c: `<strong>Oni</strong>: Imádod a társaságot, szeretsz a figyelem középpontjában lenni.`,
+          d: `<strong>Kopogószellem</strong>: Imádod, ha zaj van körülötted, és a káosz a legjobb barátod.`,
+        };
+
+        document.getElementById("result").innerHTML =
+          results[resultKey] || "Töltsd ki az összes kérdést!";
+      }
+    </script>
+  </body>
+</html>
