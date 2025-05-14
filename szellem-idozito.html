@@ -12,10 +12,11 @@
         background-color: black;
         background-repeat: no-repeat;
         background-attachment: fixed;
+        color: white;
       }
       #timer {
         font-size: 48px;
-        margin-bottom: 20px;
+        margin-bottom: 2rem;
       }
       #message {
         font-size: 24px;
@@ -23,14 +24,17 @@
         margin-top: 20px;
       }
       #timer-bg {
-        background-color: gray;
+        background-color: black;
         opacity: 0.8;
-        border: 5px solid black;
+        box-shadow: black 0px 40px 50px -20px;
+        border-radius: 30px;
       }
       button {
         padding: 10px 20px;
         font-size: 18px;
         cursor: pointer;
+        margin: 0.5rem;
+        border-radius: 20px;
       }
     </style>
   </head>
@@ -41,9 +45,9 @@
         Azután indítsd el, hogy elnyomtad a füstölőt! Hangjelzéssel jelzi, és
         szövegesen kiírja, hogy mikor melyik szellem jöhet.
       </p>
-      <div id="timer">05:00</div>
+      <div id="timer">00:00</div>
       <button onclick="startTimer()">Indítás</button>
-      <button onclick="stopTimer()">Leállítás</button>
+      <button onclick="stopAndResetTimer()">Reset</button>
       <!-- Leállító gomb -->
       <div id="message"></div>
 
@@ -87,7 +91,7 @@
           clearInterval(timerInterval); // Leállítja az előző időzítőt
           secondsElapsed = 0;
           document.getElementById("message").textContent = "";
-          document.getElementById("timer").textContent = "05:00";
+          document.getElementById("timer").textContent = "00:00";
 
           timerInterval = setInterval(() => {
             secondsElapsed++;
@@ -115,6 +119,12 @@
         function stopTimer() {
           clearInterval(timerInterval); // Az időzítő leállítása
           document.getElementById("message").textContent = "Időzítő leállítva!";
+        }
+        function stopAndResetTimer() {
+          clearInterval(timerInterval); // Stop timer
+          secondsElapsed = 0; // Reset counter
+          document.getElementById("timer").textContent = "00:00";
+          document.getElementById("message").textContent = ""; // Clear message
         }
       </script>
     </div>
